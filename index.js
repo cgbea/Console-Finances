@@ -89,8 +89,36 @@ var finances = [
   
 console.log(finances.length);
 
+var monies = finances.map(x => x[1])
+
+console.log(monies)
+
+var sumMonies = monies.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue
+},0);
+
+
+var changes = change(monies)
+
+function change(monies){
+  return monies.slice(1).map((num, i) => num - monies[i]);
+}
+
+
+console.log(changes)
+
+let sumChanges = 0;
+
+for (let i = 0; i <changes.length; i++) {
+  sumChanges += changes[i];
+}
+
+let aveChanges = sumChanges / (changes.length)
+
+console.log(Math.round(aveChanges * 100) / 100)
+
   console.log("Financial Analysis")
-  console.log("Total Months: " + finances.length + "\nTotal Profit/Losses: $38382578\nAverage Change: -2315.12\nGreatest Increase in Profits/Losses: Feb-2012 ($1926159)\nGreatest Decrease in Profits/Losses: Sep-2013 ($-2196167)");
+  console.log("Total Months: " + finances.length + "\nTotal Profit/Losses: £" + sumMonies + "\nAverage Change: " + Math.round(aveChanges * 100) / 100 + "\nGreatest Increase in Profits/Losses: Feb-2012 ($1926159)\nGreatest Decrease in Profits/Losses: Sep-2013 ($-2196167)");
 
 
 
