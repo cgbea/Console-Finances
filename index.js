@@ -144,10 +144,11 @@ console.log(
     Math.round(aveChanges * 100) / 100 +
     "\nGreatest Increase in Profits/Losses: " +
     monthMaxInc +
-    " $" +
+    " ($" +
     maxIncrease +
-    "\nGreatest Decrease in Profits/Losses: " +
+    ")\nGreatest Decrease in Profits/Losses: " +
     monthMaxDec +
-    " $" +
-    maxDecrease
+    " ($" + 
+    maxDecrease +
+    ")"
 );
