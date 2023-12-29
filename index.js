@@ -87,24 +87,24 @@ var finances = [
   ["Feb-2017", 671099],
 ];
 
-
-/*Seperate out the second column in 'finances' to work with the profit/loss values alone*/
+/*Seperate out the second column in 'finances' to work with the profit/loss values alone. This becomes a new array, here named 'monies'*/
 
 var monies = finances.map((x) => x[1]);
 
-console.log(monies);
+/*Adding all the profit/loss values together shows overall profit*/
 
 var sumMonies = monies.reduce((accumulator, currentValue) => {
   return accumulator + currentValue;
 }, 0);
 
+/*Creating the new array 'changes' of all the differences betweens values in the monies array*/
 var changes = change(monies);
 
 function change(monies) {
   return monies.slice(1).map((num, i) => num - monies[i]);
 }
 
-console.log(changes);
+/*Finding the average change by adding up 'changes' and dividing it by the number of values in the array*/
 
 let sumChanges = 0;
 
@@ -114,28 +114,25 @@ for (let i = 0; i < changes.length; i++) {
 
 var aveChanges = sumChanges / changes.length;
 
+/*Finding the highest and lowest values in 'changes'*/
 var maxIncrease = Math.max(...changes);
 
 var maxDecrease = Math.min(...changes);
 
-/* Tells you what position the maximum increase is in the array of changes*/
+/* Tells you what position the maximum increase is in the array of 'changes'*/
 
 var iMaxInc = changes.indexOf(maxIncrease);
 
 /*
-  We know the index of 'finances' max-increase is 1 higher than the index of 'change' max-increase. Therefore we need to +1 to find the relevant month in the 'finances' array.
+  We know the index of 'finances' max-increase is 1 higher than the index of 'changes' max-increase. Therefore we need to +1 to find the relevant month in the 'finances' array.
   */
 
 monthMaxInc = finances[iMaxInc + 1][0];
 
-
 /* Tells you what position the maximum decrease is in the array of changes*/
 var iMaxDec = changes.indexOf(maxDecrease);
 
-
 monthMaxDec = finances[iMaxDec + 1][0];
-
-
 
 console.log("Financial Analysis");
 console.log(
@@ -145,7 +142,12 @@ console.log(
     sumMonies +
     "\nAverage Change: " +
     Math.round(aveChanges * 100) / 100 +
-    "\nGreatest Increase in Profits/Losses: " + monthMaxInc + " $" + maxIncrease +
-    "\nGreatest Decrease in Profits/Losses: " + monthMaxDec + " $" + maxDecrease
+    "\nGreatest Increase in Profits/Losses: " +
+    monthMaxInc +
+    " $" +
+    maxIncrease +
+    "\nGreatest Decrease in Profits/Losses: " +
+    monthMaxDec +
+    " $" +
+    maxDecrease
 );
-
